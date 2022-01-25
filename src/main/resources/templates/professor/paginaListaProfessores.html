@@ -3,14 +3,11 @@
 	xmlns:th="http:www.thymeleaf.org">
 <head>
 <title>Listagem de Professores</title>
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet"></link>
-<script	
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 	<div class="container">
 		<div class="panel-default">
 			<div class="text-center">
@@ -28,13 +25,13 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="professor :${professor}">
+							<tr th:each="professor : ${professores}">
 								<td th:text="${professor.id}"></td>
 								<td th:text="${professor.nome}"></td>
 								<td>
 									<div class="btn-group pull-right">
-										<a class="btn btn-sm btn-primary">ALTERAR</a>
-										<a class="btn delete btn-sm btn-danger">EXCLUIR</a>
+										<a class="btn btn-sm btn-primary" th:href="@{/professor/alterar/{idProfessor}(idProfessor=${professor.id})}">ALTERAR</a>
+										<a class="btn delete btn-sm btn-danger"	th:href="@{/professor/excluir/{idProfessor}(idProfessor=${professor.id})}">EXCLUIR</a>
 									</div>
 								</td>
 							</tr>
@@ -43,7 +40,7 @@
 				</div>
 			</div>
 		</div>
-		<a class="btn tbn-sm btn-success">CADASTRAR NOVO PROFESSOR</a>
+		<a class="btn tbn-sm btn-success" th:href= "@{/professor/cadastrar}">CADASTRAR NOVO PROFESSOR</a>
 	</div>
 
 </body>
