@@ -20,28 +20,23 @@ public class ProfessorService {
 		return professorRepository.findAll();
 	}
 
-	public Professor salvarProfessor(Professor professor) {
+	public Professor salvar(Professor professor) {
 		return professorRepository.save(professor);
 	}
 	
-	public Professor buscarPorID(Integer id) {
-		professorRepository.findById(id);
+	public Professor buscarProfessorID(Integer id) {
 		Optional<Professor> professor = professorRepository.findById(id);
-		return professor.orElseThrow(() -> 
-		new ObjectNotFoundException(new Professor(), "Professor não encontrado. id: " + id));
+		return professor.orElseThrow(() -> new ObjectNotFoundException(new Professor(), "Professor não encontrado. Id: "+id));
 	}
 	
 	public Professor salvarAlteracao(Professor professorAlterado) throws ObjectNotFoundException {
-		Professor professor = buscarPorID(professorAlterado.getId());
+		Professor professor = buscarProfessorID(professorAlterado.getId());
 		professor.setId(professorAlterado.getId());
 		professor.setNome(professorAlterado.getNome());
-		return salvarProfessor(professor);
-		
+		return salvar(professor);
 	}
-	
+
 	public void excluir(Integer id) {
 		professorRepository.deleteById(id);
-
 	}
 }
-

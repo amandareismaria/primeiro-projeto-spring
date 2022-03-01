@@ -3,11 +3,13 @@
 	xmlns:th="http:www.thymeleaf.org">
 <head>
 <title>Listagem de Alunos</title>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet"></link>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 	<div class="container">
 		<div class="panel-default">
 			<div class="text-center">
@@ -25,7 +27,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="aluno : ${alunos}">
+							<tr th:each="aluno :${aluno}">
 								<td th:text="${aluno.id}"></td>
 								<td th:text="${aluno.nome}"></td>
 								<td>
@@ -40,7 +42,7 @@
 				</div>
 			</div>
 		</div>
-		<a class="btn tbn-sm btn-success" th:href= "@{/aluno/cadastrar}">CADASTRAR NOVO ALUNO</a>
+		<a class="btn tbn-sm btn-success" th:href="@{/aluno/cadastrar}">CADASTRAR NOVO ALUNO</a>
 	</div>
 
 </body>

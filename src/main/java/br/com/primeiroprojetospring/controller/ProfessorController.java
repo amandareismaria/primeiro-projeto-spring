@@ -12,37 +12,38 @@ import br.com.primeiroprojetospring.domain.Professor;
 import br.com.primeiroprojetospring.service.ProfessorService;
 
 @Controller
-@RequestMapping("/professor")
+@RequestMapping("professor")
 public class ProfessorController {
-
+	
+	private static final String PROFESSOR = "professor";
+	
 	@Autowired
 	private ProfessorService professorService;
-
-	@GetMapping("/listarProfessores")
+	
+	@GetMapping("/listaProfessor")
 	public ModelAndView listaTodosProfessores() {
 		ModelAndView mView = new ModelAndView("professor/paginaListaProfessores");
-		mView.addObject("professores", professorService.buscarTodosProfessores());
+		mView.addObject(PROFESSOR, professorService.buscarTodosProfessores());
 		return mView;
 	}
-	
+
 	@GetMapping("/cadastrar")
 	public ModelAndView cadastrarProfessor() {
-		ModelAndView mView= new ModelAndView("professor/cadastraProfessor");
-		mView.addObject("professor", new Professor());
+		ModelAndView mView = new ModelAndView("professor/cadastrarProfessor");
+		mView.addObject(PROFESSOR, new Professor());
 		return mView;
 	}
 	
 	@PostMapping("/salvar")
 	public ModelAndView salvarProfessor(Professor professor) {
-		professorService.salvarProfessor(professor);
+		professorService.salvar(professor);
 		return listaTodosProfessores();
-		
 	}
 	
 	@GetMapping("/alterar/{id}")
-	public ModelAndView alterarProfessor(@PathVariable("id") Integer idProfessor) {
+	public ModelAndView alteraProfessor(@PathVariable("id") Integer idProfessor) {
 		ModelAndView mView = new ModelAndView("professor/alteraProfessor");
-		mView.addObject("professor", professorService.buscarPorID(idProfessor));
+		mView.addObject(PROFESSOR, professorService.buscarProfessorID(idProfessor));
 		return mView;
 	}
 	
@@ -52,10 +53,9 @@ public class ProfessorController {
 		return listaTodosProfessores();
 	}
 	
-
 	@GetMapping("/excluir/{id}")
-	public ModelAndView excluirProfessor(@PathVariable("id") Integer id) {
+	public ModelAndView excluir(@PathVariable("id") Integer id) {
 		professorService.excluir(id);
-		return listaTodosProfessores(); 
+		return listaTodosProfessores();
 	}
 }
